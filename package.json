@@ -1,0 +1,19 @@
+{
+  "name": "pms",
+  "version": "1.0.0",
+  "description": "Placement Management System - Full Stack Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "start": "node backend/server.js"
+  },
+  "keywords": ["placement", "management", "pms"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
