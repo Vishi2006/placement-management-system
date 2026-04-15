@@ -5,6 +5,7 @@ import RoleRoute from './components/auth/RoleRoute'
 import AppLayout from './layouts/AppLayout'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
+import NotFoundPage from './pages/NotFoundPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import ApplicationsManagementPage from './pages/admin/ApplicationsManagementPage'
 import CompaniesPage from './pages/admin/CompaniesPage'
@@ -63,7 +64,8 @@ export default function App() {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      {/* 404 Not Found Page */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
