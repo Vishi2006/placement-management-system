@@ -73,18 +73,18 @@ export default function LoginPage() {
 
           <div className="space-y-3">
             <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight">
-              Welcome to Your Career Gateway
+              Placement Management System
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300">
-              Connect with top companies, manage your placements, and build your future with ease.
+              Built for real campus placement workflows across students, TPO, companies, and interviews.
             </p>
           </div>
 
           <div className="space-y-4 pt-4">
             {[
-              { icon: '🎯', text: 'Smart Job Matching' },
-              { icon: '📊', text: 'Real-time Tracking' },
-              { icon: '🤝', text: 'Direct HR Access' }
+              { icon: '📄', text: 'Cloud resume upload and secure profile updates' },
+              { icon: '🧑‍💼', text: 'Admin dashboard for jobs, companies, and interviews' },
+              { icon: '📌', text: 'Student tracking for applications and status changes' }
             ].map((item, idx) => (
               <Motion.div
                 key={idx}
@@ -218,7 +218,7 @@ export default function LoginPage() {
             </Motion.div>
           </div>
 
-          {/* Demo hint */}
+          {/* Product hint */}
           <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -226,7 +226,7 @@ export default function LoginPage() {
             className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg"
           >
             <p className="text-sm text-blue-900 dark:text-blue-200">
-              <span className="font-semibold">Demo credentials:</span> Use your registered email and password to log in.
+              <span className="font-semibold">Feature highlight:</span> Students can manage profile, resume, jobs, applications, and interviews from one place.
             </p>
           </Motion.div>
         </Motion.div>

@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth'
 
 export default function AppLayout({ menu, title }) {
   const [collapsed, setCollapsed] = useState(false)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
@@ -20,20 +21,27 @@ export default function AppLayout({ menu, title }) {
   return (
     <div className="flex h-screen flex-col bg-slate-50 dark:bg-slate-950 md:flex-row">
       {/* Sidebar */}
-      <Sidebar menu={menu} collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Sidebar
+        menu={menu}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        mobileOpen={mobileSidebarOpen}
+        setMobileOpen={setMobileSidebarOpen}
+      />
 
       {/* Main Content */}
       <main className="flex flex-1 flex-col overflow-hidden">
         {/* Header */}
         <header className="border-b border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
             {/* Left Side */}
             <div className="flex items-center gap-4">
               <button
-                onClick={() => setCollapsed(!collapsed)}
+                onClick={() => setMobileSidebarOpen(true)}
                 className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden"
+                aria-label="Open sidebar"
               >
-                {collapsed ? <Menu size={20} /> : <X size={20} />}
+                <Menu size={20} />
               </button>
               <div>
                 <p className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -66,10 +74,7 @@ export default function AppLayout({ menu, title }) {
                       {user?.role || 'User'}
                     </span>
                   </div>
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform ${profileOpen ? 'rotate-180' : ''}`}
-                  />
+                  <ChevronDown size={16} className={`transition-transform ${profileOpen ? 'rotate-180' : ''}`} />
                 </motion.button>
 
                 {/* Dropdown Menu */}
@@ -78,7 +83,7 @@ export default function AppLayout({ menu, title }) {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
-                    className="absolute right-0 top-full z-50 mt-2 w-48 rounded-lg border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900"
+                    className="absolute right-0 top-full z-50 mt-2 w-56 max-w-[90vw] rounded-lg border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900"
                   >
                     {/* Profile Info */}
                     <div className="border-b border-slate-200 px-4 py-3 dark:border-slate-700">
@@ -135,7 +140,7 @@ export default function AppLayout({ menu, title }) {
 
         {/* Page Content */}
         <div className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-7xl p-6">
+          <div className="mx-auto max-w-7xl p-3 sm:p-4 md:p-6">
             <Outlet />
           </div>
         </div>

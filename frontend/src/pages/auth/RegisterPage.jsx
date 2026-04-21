@@ -91,8 +91,19 @@ export default function RegisterPage() {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">PMS Pro</h1>
           </div>
           <div className="space-y-3">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight">Join the Platform</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">Register as student or admin to begin.</p>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight">Register Student Account</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300">Complete your academic profile so recruiters and TPO can evaluate you faster.</p>
+          </div>
+          <div className="space-y-3">
+            {[
+              'Profile includes phone, branch, CGPA, and skills',
+              'Resume is uploaded to cloud and linked to your profile',
+              'Track applications, interviews, and final results',
+            ].map((feature) => (
+              <div key={feature} className="rounded-xl border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200">
+                {feature}
+              </div>
+            ))}
           </div>
         </Motion.div>
 
@@ -100,7 +111,7 @@ export default function RegisterPage() {
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 sm:p-10 space-y-6 border border-white dark:border-slate-700 max-h-[90vh] overflow-y-auto">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Create account</h2>
-              <p className="text-slate-600 dark:text-slate-400">Join our placement platform today</p>
+              <p className="text-slate-600 dark:text-slate-400">Register with real student details used in placement operations.</p>
             </div>
 
             <form onSubmit={onSubmit} className="space-y-4">

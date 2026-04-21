@@ -1,4 +1,4 @@
-import { Briefcase, Building2, CalendarClock, Home, Menu, User, X, LayoutDashboard } from 'lucide-react'
+import { Briefcase, Building2, CalendarClock, Home, User, X, LayoutDashboard } from 'lucide-react'
 import { motion as Motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const iconByLabel = {
   Students: User,
 }
 
-export default function Sidebar({ menu, collapsed, setCollapsed }) {
+export default function Sidebar({ menu, collapsed, setCollapsed, mobileOpen, setMobileOpen }) {
   const containerVariants = {
     open: {
       width: 248,
@@ -27,13 +27,24 @@ export default function Sidebar({ menu, collapsed, setCollapsed }) {
   }
 
   return (
-    <Motion.aside
-      variants={containerVariants}
-      initial={collapsed ? 'closed' : 'open'}
-      animate={collapsed ? 'closed' : 'open'}
-      className="fixed left-0 top-0 z-40 h-screen border-r border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 md:relative md:border-r md:border-slate-200 md:shadow-none"
-    >
-      <div className="flex h-full flex-col">
+    <>
+      {mobileOpen && (
+        <Motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+        />
+      )}
+
+      <Motion.aside
+        variants={containerVariants}
+        initial={collapsed ? 'closed' : 'open'}
+        animate={collapsed ? 'closed' : 'open'}
+        className={`fixed left-0 top-0 z-50 h-screen border-r border-slate-200 bg-white shadow-sm transition-transform dark:border-slate-800 dark:bg-slate-900 md:relative md:z-auto md:translate-x-0 md:border-r md:border-slate-200 md:shadow-none ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+      >
+        <div className="flex h-full flex-col">
         {/* Logo Section */}
         <div className="flex items-center justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800">
           <Motion.div
@@ -52,11 +63,11 @@ export default function Sidebar({ menu, collapsed, setCollapsed }) {
 
           {/* Toggle Button */}
           <button
-            onClick={() => setCollapsed((v) => !v)}
+            onClick={() => setMobileOpen(false)}
             className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden"
-            aria-label="Toggle sidebar"
+            aria-label="Close sidebar"
           >
-            {collapsed ? <Menu size={18} /> : <X size={18} />}
+            <X size={18} />
           </button>
         </div>
 
@@ -68,6 +79,7 @@ export default function Sidebar({ menu, collapsed, setCollapsed }) {
               <NavLink
                 key={item.to}
                 to={item.to}
+                onClick={() => setMobileOpen(false)}
                 className={({ isActive }) =>
                   `group relative flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                     isActive
@@ -116,17 +128,7 @@ export default function Sidebar({ menu, collapsed, setCollapsed }) {
           </Motion.div>
         </div>
       </div>
-
-      {/* Overlay for mobile */}
-      {!collapsed && (
-        <Motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setCollapsed(true)}
-          className="fixed inset-0 z-30 bg-black/50 md:hidden"
-        />
-      )}
-    </Motion.aside>
+      </Motion.aside>
+    </>
   )
 }
