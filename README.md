@@ -4,7 +4,7 @@ A full-stack web application for managing student placements, job listings, appl
 
 ## Features
 
-- **Student Portal**: Browse jobs, apply, track applications, manage interviews
+- **Student Portal**: Browse jobs, apply, track applications, manage interviews, resume uploads
 - **Admin Dashboard**: Manage companies, jobs, applications, and interview schedules
 - **Secure Authentication**: JWT-based auth with role-based access control
 - **Admin Account**: Static admin user with secure password management
@@ -70,7 +70,7 @@ npm run dev:frontend   # Frontend only
 The admin user is automatically created on first startup:
 
 - **Email**: `admin@pms.com`
-- **Password**: `AdminPMS@123`
+- **Password**: `dummy`
 
 ⚠️ **IMPORTANT**: Change the password immediately after first login via the admin dashboard.
 
@@ -181,9 +181,6 @@ For issues or questions:
 3. Ensure MongoDB is accessible
 4. Check browser console (F12) for frontend errors
 
-## License
-
-ISC
 
 ## Contributing
 
